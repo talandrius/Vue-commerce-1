@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+    <title>Static Template</title>
+  </head>
+  <body>
+    <h1 class="title">Vue JS Tutoriel</h1>
+
+    <div id="app">
+      <section class="hero is-primary">
+        <div class="container">
+          <div class="row">
+            <p>
+              Login : <input type="text" v-model="user" /> | êtes connecté en
+              tant que {{ user}}
+            </p>
+          </div>
+        </div>
+      </section>
+      <h1 class="title" v-if="commandes.length >0">Votre Panier</h1>
+      <div class="row">
+        <fiche-produit
+          v-for="commande in commandes"
+          v-bind:nom="commande"
+          role="recap"
+        ></fiche-produit>
+      </div>
+      <h1 class="title" v-bind:class="affichage">produits disponibles</h1>
+      <div class="row">
+        <fiche-produit
+          v-for="produit in produits"
+          v-bind:nom="produit"
+          v-on:commande-passee="commander"
+          role="commande"
+        ></fiche-produit>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
